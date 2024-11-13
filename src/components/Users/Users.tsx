@@ -1,4 +1,4 @@
-import { getUsers } from "@/app/api/getUsers";
+import { getUsers } from "@/app/api/user";
 import UserCard from "../Card/UserCard";
 
 const Users = async () => {
