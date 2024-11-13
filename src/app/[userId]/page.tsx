@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Metadata } from "next/types";
-import { getUser } from "../api/user";
+import { getUser } from "../../api/user";
 
 type UserPageProps = {
   params: Promise<{ userId: string }>;
