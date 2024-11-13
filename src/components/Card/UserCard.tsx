@@ -10,20 +10,25 @@ type UserCardProps = {
   lastName?: string;
   age?: number | string;
   id: string | number;
+  className?: string;
 };
 
-const UserCardStyled = styled.div`
+const UserCardStyled = styled(Link)`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  width: 100%;
+  max-width: 320px;
 `;
 
-const UserCard = ({ image, firstName, lastName, age, id }: UserCardProps) => {
+const UserCard = ({ image, firstName, lastName, age, id, className }: UserCardProps) => {
   return (
-    <Link href={`/${id}`}>
-      <UserCardStyled>
+      <UserCardStyled className={className} href={`/${id}`}>
         {image && (
           <div>
           <Image src={image} alt={firstName || ""} width={100} height={100} />
@@ -33,7 +38,6 @@ const UserCard = ({ image, firstName, lastName, age, id }: UserCardProps) => {
       <p>{lastName}</p>
       <p>{age}</p>
     </UserCardStyled>
-      </Link>
   );
 };
 

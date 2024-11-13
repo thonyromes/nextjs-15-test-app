@@ -2,22 +2,30 @@ import Image from "next/image";
 import { Metadata } from "next/types";
 import { getUser } from "../api/getUsers";
 
-export const generateMetadata = async (userId: string): Promise<Metadata> => {
+type UserPageProps = {
+  params: Promise<{ userId: string }>;
+}
+
+export const generateMetadata = async ({ params }: UserPageProps): Promise<Metadata> => {
+  const { userId } = await params;
+
   const user = await getUser(userId);
+  
   return {
     title: `${user.firstName} ${user.lastName}`,
     description: `User ${user.firstName} ${user.lastName}`,
   };
 };
 
-const UserPage = async ({ params }: { params: { userId: string } }) => {
+
+const UserPage = async ({ params }: UserPageProps) => {
 
   const { userId } = await params;
 
   const user = await getUser(userId);
 
   return (
-    <div className="flex">
+    <div className="flex flex-col items-center justify-center gap-4 pt-4">
       {user?.image &&
       (
       <div>
@@ -26,11 +34,14 @@ const UserPage = async ({ params }: { params: { userId: string } }) => {
       )
       }
       <div>
-        <ul>
-          <li>{user.firstName}</li>
-          <li>{user.lastName}</li>
-          <li>{user.age}</li>
-        </ul>
+        <dl>
+          <dt className="font-bold">First Name</dt>
+          <dd>{user.firstName}</dd>
+          <dt className="font-bold">Last Name</dt>
+          <dd>{user.lastName}</dd>
+          <dt className="font-bold">Age</dt>
+          <dd>{user.age}</dd>
+        </dl>
       </div>
     </div>
   )
