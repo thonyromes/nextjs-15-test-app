@@ -1,4 +1,4 @@
-import Users from "@/components/Users/Users";
+import Users from "@/components/Users";
 import { Suspense } from "react";
 
 export const metadata = {
