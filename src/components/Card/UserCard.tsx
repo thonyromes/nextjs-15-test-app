@@ -23,7 +23,7 @@ const UserCardStyled = styled(Link)`
   border-radius: 0.5rem;
   padding: 1rem;
   width: 100%;
-  max-width: 320px;
+  max-width: 300px;
 `;
 
 const UserCard = ({ image, firstName, lastName, age, id, className }: UserCardProps) => {
